@@ -17,16 +17,21 @@ API REST desenvolvida com Spring Boot para gerenciamento de tarefas. Projeto pr�
 
 ## 🗂️ Estrutura do Projeto
 
+```text
 src/
 ├── main/
 │   ├── java/
-│   │   └── com/example/gerenciador/
-│   │       ├── controller/
-│   │       ├── service/
-│   │       ├── repository/
-│   │       └── model/
+│   │   └── com/
+│   │       └── example/
+│   │           └── gerenciador/
+│   │               ├── controller/
+│   │               ├── service/
+│   │               ├── repository/
+│   │               └── model/
 │   └── resources/
 │       └── application.properties
+└── test/
+```
 
 
 
