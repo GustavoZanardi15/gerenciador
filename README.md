@@ -19,14 +19,15 @@ API REST desenvolvida com Spring Boot para gerenciamento de tarefas. Projeto pr�
 
 src/
 ├── main/
-│ ├── java/
-│ │ └── com/example/gerenciador/
-│ │ ├── controller/
-│ │ ├── service/
-│ │ ├── repository/
-│ │ └── model/
-│ └── resources/
-│ └── application.properties
+│   ├── java/
+│   │   └── com/example/gerenciador/
+│   │       ├── controller/
+│   │       ├── service/
+│   │       ├── repository/
+│   │       └── model/
+│   └── resources/
+│       └── application.properties
+
 
 
 ---
@@ -46,11 +47,13 @@ Acesse o console do banco:
 http://localhost:8080/h2-console
 
 🛠️ Endpoints da API
-Método	Endpoint	    Descrição
-POST	/tarefas	    Cadastrar nova tarefa
-GET	    /tarefas	    Listar todas as tarefas
-PUT	    /tarefas/{id}	Atualizar uma tarefa
-DELETE	/tarefas/{id}	Remover uma tarefa
+| Método | Endpoint        | Descrição               |
+| ------ | --------------- | ----------------------- |
+| POST   | `/tarefas`      | Cadastrar nova tarefa   |
+| GET    | `/tarefas`      | Listar todas as tarefas |
+| PUT    | `/tarefas/{id}` | Atualizar uma tarefa    |
+| DELETE | `/tarefas/{id}` | Remover uma tarefa      |
+
 
 Exemplo de JSON para POST/PUT
 
@@ -59,6 +62,7 @@ Exemplo de JSON para POST/PUT
 "descricao": "Fazer os commits diários",
 "status": "PENDENTE"
 }
+
 
 ✅ Funcionalidades implementadas
 Cadastro de tarefas
