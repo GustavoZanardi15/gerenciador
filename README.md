@@ -1,6 +1,6 @@
 # 📋 Gerenciador de Tarefas
 
-API REST desenvolvida com Spring Boot para gerenciamento de tarefas. Projeto prático da faculdade com estrutura em camadas, persistência em banco de dados H2 e operações CRUD completas.
+API REST desenvolvida com Spring Boot para gerenciamento de tarefas. Projeto acadêmico com estrutura em camadas, persistência em banco de dados H2 e autenticação JWT (ponto extra).
 
 ---
 
@@ -12,28 +12,26 @@ API REST desenvolvida com Spring Boot para gerenciamento de tarefas. Projeto pr�
 - Spring Data JPA
 - H2 Database
 - Maven
+- JWT (`jjwt` 0.11.5)
 
 ---
 
-## 🗂️ Estrutura do Projeto
+## 📁 Estrutura do Projeto
 
 ```text
 src/
 ├── main/
 │   ├── java/
-│   │   └── com/
-│   │       └── example/
-│   │           └── gerenciador/
-│   │               ├── controller/
-│   │               ├── service/
-│   │               ├── repository/
-│   │               └── model/
+│   │   └── com/example/gerenciador/
+│   │       ├── controller/
+│   │       ├── dto/
+│   │       ├── model/
+│   │       ├── repository/
+│   │       ├── security/
+│   │       └── service/
 │   └── resources/
 │       └── application.properties
 └── test/
-```
-
-
 
 ---
 
@@ -84,7 +82,33 @@ Estrutura em camadas (Controller, Service, Repository, Model)
 
 Commits rastreáveis por funcionalidade
 
-Documentação no README
+🔐 Autenticação JWT (Ponto Extra)
+A aplicação também conta com autenticação baseada em JWT.
+
+📥 Registro de usuário
+POST /auth/register
+
+Body JSON:
+{
+  "username": "admin",
+  "password": "123456"
+}
+
+🔑 Login
+POST /auth/login
+
+Body JSON:
+
+json
+Copiar
+Editar
+
+{
+  "username": "admin",
+  "password": "123456"
+}
+
+Resposta:Bearer eyJhbGciOiJIUzI1NiJ9...
 
 Autor:
 Gustavo Ulian Zanardi — Engenharia de Software — Unicesumar
