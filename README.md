@@ -1,3 +1,5 @@
+![Status](https://img.shields.io/badge/Status-Em%20Desenvolvimento-yellow)
+
 # 📋 Gerenciador de Tarefas
 
 API REST desenvolvida com Spring Boot para gerenciamento de tarefas. Projeto acadêmico com estrutura em camadas, persistência em banco de dados H2 e autenticação JWT (ponto extra).
