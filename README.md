@@ -112,5 +112,4 @@ Editar
 
 Resposta:Bearer eyJhbGciOiJIUzI1NiJ9...
 
-Autor:
-Gustavo Ulian Zanardi — Engenharia de Software — Unicesumar
+Autor: Gustavo Ulian Zanardi — Engenharia de Software — Unicesumar
