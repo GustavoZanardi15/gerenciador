@@ -40,4 +40,41 @@ public class UsuarioController {
         return ResponseEntity.ok(atualizado);
     }
 
+    @GetMapping("/{id}")
+    @PreAuthorize("hasRole('ADMIN')")
+    public ResponseEntity<?> visualizarUsuarioPorId(@PathVariable Long id) {
+        return usuarioRepository.findById(id)
+                .map(ResponseEntity::ok)
+                .orElse(ResponseEntity.notFound().build());
+    }
+
+    @PutMapping("/{id}")
+    @PreAuthorize("hasRole('ADMIN')")
+    public ResponseEntity<?> atualizarUsuario(@PathVariable Long id,
+                                              @RequestBody UsuarioModel dadosAtualizados) {
+        return usuarioRepository.findById(id)
+                .map(usuario -> {
+                    usuario.setNome(dadosAtualizados.getNome());
+                    usuario.setEmail(dadosAtualizados.getEmail());
+                    usuario.setPassword(dadosAtualizados.getPassword());
+                    usuario.setUsername(dadosAtualizados.getUsername());
+                    usuario.setRole(dadosAtualizados.getRole());
+
+                    UsuarioModel atualizado = usuarioRepository.save(usuario);
+                    return ResponseEntity.ok(atualizado);
+                })
+                .orElse(ResponseEntity.notFound().build());
+    }
+
+    @DeleteMapping("/{id}")
+    @PreAuthorize("hasRole('ADMIN')")
+    public ResponseEntity<?> deletarUsuario(@PathVariable Long id) {
+        if (!usuarioRepository.existsById(id)) {
+            return ResponseEntity.notFound().build();
+        }
+
+        usuarioRepository.deleteById(id);
+        return ResponseEntity.noContent().build();
+    }
+
 }
