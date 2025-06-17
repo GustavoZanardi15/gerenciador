@@ -12,9 +12,10 @@ API REST desenvolvida com Spring Boot para gerenciamento de tarefas. Projeto aca
 - Spring Boot
 - Spring Web
 - Spring Data JPA
-- H2 Database
+- Spring Security
+- JWT (jjwt 0.11.5)
+- H2 Database (pode ser trocado por MySQL/PostgreSQL)
 - Maven
-- JWT (`jjwt` 0.11.5)
 
 ---
 
@@ -23,93 +24,98 @@ API REST desenvolvida com Spring Boot para gerenciamento de tarefas. Projeto aca
 ```text
 src/
 ├── main/
-│   ├── java/
-│   │   └── com/example/gerenciador/
-│   │       ├── controller/
-│   │       ├── dto/
-│   │       ├── model/
-│   │       ├── repository/
-│   │       ├── security/
-│   │       └── service/
+│   ├── java/com/example/gerenciador/
+│   │   ├── config/
+│   │   ├── controller/
+│   │   ├── model/
+│   │   ├── repository/
+│   │   └── security/
 │   └── resources/
 │       └── application.properties
 └── test/
 
 ---
 
-## ⚙️ Como rodar o projeto
+⚙️ Como Rodar o Projeto
 
-1. Clone o repositório:
+Clone o repositório:
    ```bash
-   git clone https://github.com/GustavoZanardi15/gerenciador.git
+
+git clone https://github.com/GustavoZanardi15/gerenciador.git
    
 Abra no IntelliJ IDEA (ou outro IDE).
 
+Acesse a pasta:
+
+cd gerenciador
+
 Rode a classe GerenciadorApplication.java.
 
-Acesse o console do banco:
-
-http://localhost:8080/h2-console
-
-🛠️ Endpoints da API
-| Método | Endpoint        | Descrição               |
-| ------ | --------------- | ----------------------- |
-| POST   | `/tarefas`      | Cadastrar nova tarefa   |
-| GET    | `/tarefas`      | Listar todas as tarefas |
-| PUT    | `/tarefas/{id}` | Atualizar uma tarefa    |
-| DELETE | `/tarefas/{id}` | Remover uma tarefa      |
-
-
-Exemplo de JSON para POST/PUT
-
-{
-"titulo": "Estudar Spring Boot",
-"descricao": "Fazer os commits diários",
-"status": "PENDENTE"
-}
-
-
-✅ Funcionalidades implementadas
-Cadastro de tarefas
-
-Listagem de tarefas
-
-Atualização de status e conteúdo
-
-Remoção de tarefas
-
-Banco de dados H2 em memória
-
-Estrutura em camadas (Controller, Service, Repository, Model)
-
-Commits rastreáveis por funcionalidade
-
-🔐 Autenticação JWT (Ponto Extra)
-A aplicação também conta com autenticação baseada em JWT.
-
-📥 Registro de usuário
+🔐 Autenticação com JWT
+📥 Cadastro de Usuário
 POST /auth/register
 
-Body JSON:
-{
+Payload JSON:{
+  "nome": "Gustavo Zanardi",
+  "email": "gustavo@email.com",
   "username": "admin",
-  "password": "123456"
+  "password": "123456",
+  "role": "ADMIN"
 }
 
 🔑 Login
 POST /auth/login
 
-Body JSON:
-
-json
-Copiar
-Editar
-
-{
+Payload JSON:{
   "username": "admin",
   "password": "123456"
 }
 
 Resposta:Bearer eyJhbGciOiJIUzI1NiJ9...
 
-Autor: Gustavo Ulian Zanardi — Engenharia de Software — Unicesumar
+Utilize este token como header:Authorization: Bearer <token>
+
+👤 Endpoints do Usuário
+📄 Perfil do próprio usuário (ROLE: USER ou ADMIN)
+| Método | Endpoint       | Descrição                    |
+| ------ | -------------- | ---------------------------- |
+| GET    | `/usuarios/me` | Ver seu próprio perfil       |
+| PUT    | `/usuarios/me` | Atualizar seu próprio perfil |
+
+
+🛡️ Ações exclusivas para ADMIN
+| Método | Endpoint         | Descrição                   |
+| ------ | ---------------- | --------------------------- |
+| GET    | `/usuarios`      | Listar todos os usuários    |
+| GET    | `/usuarios/{id}` | Visualizar qualquer usuário |
+| PUT    | `/usuarios/{id}` | Atualizar qualquer usuário  |
+| DELETE | `/usuarios/{id}` | Deletar qualquer usuário    |
+
+
+📌 Exemplo de JSON para edição
+{
+  "nome": "Novo Nome",
+  "email": "novo@email.com",
+  "username": "novouser",
+  "password": "novasenha",
+  "role": "USER"
+}
+
+
+📦 Endpoints de Tarefas (ROLE: USER ou ADMIN)
+| Método | Endpoint        | Descrição               |
+| ------ | --------------- | ----------------------- |
+| POST   | `/tarefas`      | Criar nova tarefa       |
+| GET    | `/tarefas`      | Listar todas as tarefas |
+| PUT    | `/tarefas/{id}` | Atualizar tarefa        |
+| DELETE | `/tarefas/{id}` | Deletar tarefa          |
+
+📜 Observações
+Todos os endpoints, exceto /auth/**, são protegidos por token JWT.
+Apenas usuários autenticados podem acessar os dados.
+Apenas ADMIN tem acesso a gerenciamento de usuários.
+Senhas podem ser criptografadas com BCrypt para segurança extra (não obrigatório).
+
+👨‍💻 Autor
+Gustavo Ulian Zanardi
+Engenharia de Software – Unicesumar
