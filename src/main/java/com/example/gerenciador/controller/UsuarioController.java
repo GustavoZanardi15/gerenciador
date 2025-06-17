@@ -5,6 +5,7 @@ import com.example.gerenciador.repository.UsuarioRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -21,5 +22,10 @@ public class UsuarioController {
     public ResponseEntity<List<UsuarioModel>> listarUsuarios() {
         List<UsuarioModel> usuarios = usuarioRepository.findAll();
         return ResponseEntity.ok(usuarios);
+    }
+
+    @GetMapping("/me")
+    public ResponseEntity<?> verMeuPerfil(@AuthenticationPrincipal UsuarioModel usuario) {
+        return ResponseEntity.ok(usuario);
     }
 }
