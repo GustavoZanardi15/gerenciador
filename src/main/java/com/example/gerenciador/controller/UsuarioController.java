@@ -28,4 +28,16 @@ public class UsuarioController {
     public ResponseEntity<?> verMeuPerfil(@AuthenticationPrincipal UsuarioModel usuario) {
         return ResponseEntity.ok(usuario);
     }
+
+    @PutMapping("/me")
+    public ResponseEntity<?> atualizarMeuPerfil(@AuthenticationPrincipal UsuarioModel usuarioLogado,
+                                                @RequestBody UsuarioModel novosDados) {
+        usuarioLogado.setNome(novosDados.getNome());
+        usuarioLogado.setEmail(novosDados.getEmail());
+        usuarioLogado.setPassword(novosDados.getPassword()); // ⚠️ Criptografar futuramente
+
+        UsuarioModel atualizado = usuarioRepository.save(usuarioLogado);
+        return ResponseEntity.ok(atualizado);
+    }
+
 }
