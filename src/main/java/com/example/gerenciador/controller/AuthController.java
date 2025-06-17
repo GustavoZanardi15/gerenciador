@@ -22,12 +22,17 @@ public class AuthController {
     @PostMapping("/register")
     public ResponseEntity<?> registrarUsuario(@RequestBody UsuarioModel usuario) {
         if (usuarioRepository.findByUsername(usuario.getUsername()).isPresent()) {
-            return ResponseEntity.badRequest().body("Usuário já existe");
+            return ResponseEntity.badRequest().body("Usuário já existe com esse username");
+        }
+
+        if (usuarioRepository.findByEmail(usuario.getEmail()).isPresent()) {
+            return ResponseEntity.badRequest().body("Usuário já existe com esse email");
         }
 
         UsuarioModel novoUsuario = usuarioRepository.save(usuario);
         return ResponseEntity.ok(novoUsuario);
     }
+
 
 
     @PostMapping("/login")
