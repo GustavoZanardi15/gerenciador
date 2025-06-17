@@ -1,6 +1,5 @@
-package com.example.gerenciador.config;
+package com.example.gerenciador.security;
 
-import com.example.gerenciador.security.JwtUtil;
 import io.jsonwebtoken.JwtException;
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
