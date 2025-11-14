@@ -6,7 +6,7 @@ API REST desenvolvida com Spring Boot para gerenciamento de tarefas. Projeto aca
 
 ---
 
-## 🚀 Tecnologias utilizadas
+## Tecnologias utilizadas
 
 - Java 17
 - Spring Boot
@@ -37,7 +37,7 @@ src/
 
 ---
 
-## ⚙️ Como rodar o projeto
+## Como rodar o projeto
 
 1. Clone o repositório:
    ```bash
@@ -48,7 +48,7 @@ Rode a classe GerenciadorApplication.java.
 Acesse o console do banco:
 http://localhost:8080/h2-console
 
-🛠️ Endpoints da API
+Endpoints da API
 | Método | Endpoint        | Descrição               |
 | ------ | --------------- | ----------------------- |
 | POST   | `/tarefas`      | Cadastrar nova tarefa   |
@@ -66,7 +66,7 @@ Exemplo de JSON para POST/PUT
 }
 
 
-✅ Funcionalidades implementadas
+Funcionalidades implementadas
 Cadastro de tarefas
 Listagem de tarefas
 Atualização de status e conteúdo
@@ -75,10 +75,10 @@ Banco de dados H2 em memória
 Estrutura em camadas (Controller, Service, Repository, Model)
 Commits rastreáveis por funcionalidade
 
-🔐 Autenticação JWT (Ponto Extra)
+Autenticação JWT (Ponto Extra)
 A aplicação também conta com autenticação baseada em JWT.
 
-📥 Registro de usuário
+Registro de usuário
 POST /auth/register
 
 Body JSON:
@@ -87,7 +87,7 @@ Body JSON:
   "password": "123456"
 }
 
-🔑 Login
+Login
 POST /auth/login
 
 Body JSON:
@@ -105,13 +105,13 @@ Resposta:Bearer eyJhbGciOiJIUzI1NiJ9...
 
 ---
 
-## 🧪 Como Testar a API no Postman
+## Como Testar a API no Postman
 
 Siga este passo a passo para testar todas as funcionalidades:
 
 ---
 
-### 🔐 1. Cadastro de Usuário (ADMIN e USER)
+### 1. Cadastro de Usuário (ADMIN e USER)
 
 - **POST** `/auth/register`
 
@@ -133,7 +133,7 @@ Siga este passo a passo para testar todas as funcionalidades:
   "role": "USER"
 }
 
-🔑 2. Login para obter o token JWT
+2. Login para obter o token JWT
 POST /auth/login
 
 Corpo JSON:{
@@ -146,7 +146,7 @@ Resultado:Bearer eyJhbGciOiJIUzI1NiJ9...
 Copie o token retornado e use em todas as próximas requisições como:
 Authorization: Bearer <seu_token>
 
-👤 3. Ver/Editar perfil do usuário logado
+3. Ver/Editar perfil do usuário logado
 Ver perfil:
 GET /usuarios/me
 
@@ -158,7 +158,7 @@ PUT /usuarios/me
   "password": "novaSenha"
 }
 
-🛡️ 4. Ações disponíveis apenas para ADMIN
+4. Ações disponíveis apenas para ADMIN
 Listar todos os usuários:
 GET /usuarios
 
@@ -178,7 +178,7 @@ PUT /usuarios/1
 Deletar usuário:
 DELETE /usuarios/1
 
-📝 5. Endpoints de Tarefas (acesso com qualquer token válido)
+5. Endpoints de Tarefas (acesso com qualquer token válido)
 POST /tarefas
 GET /tarefas
 PUT /tarefas/{id}
